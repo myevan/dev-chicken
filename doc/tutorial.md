@@ -30,3 +30,103 @@
 새로운 가상 환경이 생성되면 패키지 목록에 pip, setupstools, wheel 정도만 표시됩니다. 
 
 
+##  시작
+
+### 패키지 설치
+
+메인 메뉴 File > Settings 를 클릭해 Project Interpreter 로 이동합니다.
+
+**+ 버튼**을 누르면 Available Packages 팝업이 표시되는데, 여기서 새로운 패키지를 설치할 수 있습니다.  **Flask** 를 검색해서 선택 한후 **Install Package** 버튼을 눌러 설치하고 창을 닫고 Settings 다이얼로그도 OK 버튼을 눌러 닫습니다.
+
+
+### 소스 작성
+
+Project 탭 컨텍스트 메뉴에서 New 를 클릭해 src 폴더와 src/main.py 를 생성합니다.
+
+    from flask import Flask
+
+    app = Flask(__name__)
+
+
+    @app.route('/')
+    def home():
+        return 'Hello, World!'
+
+
+    app.run(debug=True)
+    
+    
+### 앱 실행
+
+메인 메뉴 Run > Run 'main' 메뉴를 클릭하면 앱이 실행되며 하단 콘솔창에 다음과 같은 메시지가 표시됩니다.
+
+    pydev debugger: process 384 is connecting
+
+    Connected to pydev debugger (build 143.1919)
+     * Restarting with stat
+    pydev debugger: process 4508 is connecting
+
+     * Debugger is active!
+     * Debugger pin code: 154-334-778
+     * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+
+로컬 사이트 <http://127.0.0.1:5000/> 을 접속하면 실행 결과를 확인 할 수 있습니다.
+
+
+### 디버깅
+
+실행 전 에러는 콘솔 창에서 확인 가능합니다. 예를 들어 home() 뒤에 : 을 빠뜨렸다면 아래와 같은 메시지가 표시됩니다.
+
+      File "C:/Users/myevan/Projects/dev-chicken/src/main.py", line 7
+        def home()
+                 ^
+    SyntaxError: invalid syntax
+
+    Process finished with exit code 1
+    
+실행 후 에러는 웹 페이지에서 확인 가능합니다. 예를 들어 'Hello, World!' 뒤에 + 2 를 붙인다면 로컬 사이트 접속시 아래와 같은 화면이 표시됩니다.
+
+    TypeError
+
+        TypeError: cannot concatenate 'str' and 'int' objects
+
+
+    Traceback (most recent call last)
+
+
+        File "C:\Users\myevan\PythonEnvironments\mobile_game_server\lib\site-packages\flask\app.py", line 1836, in __call__
+
+            return self.wsgi_app(environ, start_response)
+
+            ... 중략 ...
+
+
+        File "C:\Users\myevan\Projects\dev-chicken\src\main.py", line 8, in home
+
+            return 'Hello, World!' + 2
+
+
+        TypeError: cannot concatenate 'str' and 'int' objects
+
+        ... 후략 ...
+        
+디버깅 페이지 각 소스 라인을 선택하면 콘솔 버튼이 표시되는데 해당 버튼을 누르면 변수 상태 확인이 가능합니다.     
+
+첫번째 시도시에는 아래와 같은 팝업이 표시되는데 앱 실행시 콘솔창에 표시된 PIN 로그 `* Debugger pin code: xxx-xxx-xxx` 번호를 입력하면 됩니다.
+
+
+    Console Locked
+
+    The console is locked and needs to be unlocked by entering the PIN. You can find the PIN printed out on the standard output of your shell that runs the server. 
+
+
+    PIN:            [Confirm]
+
+웹 콘솔에서 변수를 입력하면 내용을 확인 할 수 있습니다.
+
+    [console ready]    
+    >>> app.config
+    flask.config.Config({'JSON_AS_ASCII': True, 'USE_X_SENDFILE': False, 'SESSION_COOKIE_PATH': None, 'SESSION_COOKIE_DOMAIN': None,   })
+    >>> 
+    
+    
