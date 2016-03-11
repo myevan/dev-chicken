@@ -87,27 +87,18 @@ Project 탭 컨텍스트 메뉴에서 New 를 클릭해 src 폴더와 src/main.p
 실행 후 에러는 웹 페이지에서 확인 가능합니다. 예를 들어 'Hello, World!' 뒤에 + 2 를 붙인다면 로컬 사이트 접속시 아래와 같은 화면이 표시됩니다.
 
     TypeError
-
         TypeError: cannot concatenate 'str' and 'int' objects
 
 
     Traceback (most recent call last)
-
-
         File "C:\Users\myevan\PythonEnvironments\mobile_game_server\lib\site-packages\flask\app.py", line 1836, in __call__
-
             return self.wsgi_app(environ, start_response)
-
             ... 중략 ...
 
-
         File "C:\Users\myevan\Projects\dev-chicken\src\main.py", line 8, in home
-
             return 'Hello, World!' + 2
 
-
         TypeError: cannot concatenate 'str' and 'int' objects
-
         ... 후략 ...
         
 디버깅 페이지 각 소스 라인을 선택하면 콘솔 버튼이 표시되는데 해당 버튼을 누르면 변수 상태 확인이 가능합니다.     
